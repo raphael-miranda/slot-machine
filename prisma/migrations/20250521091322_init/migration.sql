@@ -1,6 +1,0 @@
--- CreateTable
-CREATE TABLE "Session" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "credits" INTEGER NOT NULL DEFAULT 0,
-    "isActive" BOOLEAN NOT NULL DEFAULT true
-);
