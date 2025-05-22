@@ -92,14 +92,14 @@ export default function SlotMachine() {
   }
   
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      <h1 className="text-2xl font-bold">Slot Machine</h1>
-      <p>Credits: {session?.credits ?? 0}</p>
-      <div className="flex gap-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-100 to-white p-6">
+      <h1 className="text-4xl font-bold text-green-800 mb-6 shadow-md animate-pulse">Slot Machine</h1>
+      <p className="text-xl font-semibold text-gray-700">Credits: {session?.credits ?? 0}</p>
+      <div className="flex gap-6 mb-8">
         {displaySymbols.map((symbol, i) => (
           <div
             key={i}
-            className="w-24 h-24 border-2 border-gray-300 flex items-center justify-center"
+            className="w-32 h-32 border-4 border-yellow-300 bg-white rounded-lg flex items-center justify-center shadow-lg transition-all duration-500"
           >
             {
               symbol.isSpinning ? (
@@ -117,6 +117,7 @@ export default function SlotMachine() {
                   alt={symbols[symbol.symbol as Symbol]?.name}
                   width={50}
                   height={50}
+                  className="transition-opacity duration-500 opacity-100"
                 />
               ) : (
               <Image
@@ -129,27 +130,31 @@ export default function SlotMachine() {
           </div>
         ))}
       </div>
-      <p>
-        {rollResult?.creditsWon
-          ? `You won ${rollResult.creditsWon} credits!`
-          : ""}
-      </p>
+      {rollResult?.creditsWon ? <div className="bg-green-100 p-3 rounded-lg mb-6 animate__animated animate-bounce">
+        <p className="text-lg text-green-700">
+          {`You won ${rollResult.creditsWon} credits!`}
+        </p>
+      </div> : <div />}
       <button
         onClick={handleRollClicked}
         disabled={isRollDisabled || !session || session.credits < 1}
-        className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+        className="flex gap-4 px-8 py-3 bg-blue-600 text-white text-lg rounded-full hover:bg-blue-700 disabled:bg-blue-400 transition-transform transform active:scale-95 mb-4 animate__animated animate-bounce"
+        aria-label="Roll the slots"
       >
+        <Image src="/icons/play.svg" alt="play" width={20} height={20} />
         Roll (1 credit)
       </button>
       <button
         onClick={cashOut}
         onMouseEnter={handleCashOutHover}
         disabled={isCashOutDisabled || !session}
-        className="px-4 py-2 bg-red-500 text-white rounded transition-transform"
+        className="flex gap-4 px-8 py-3 bg-red-600 text-white text-lg rounded-full hover:bg-red-700 disabled:bg-red-400 transition-transform transform active:scale-95 mb-4"
         style={{
           transform: `translate(${cashOutPosition.x}px, ${cashOutPosition.y}px)`,
         }}
+        aria-label="Cash out credits"
       >
+        <Image src="/icons/cashout.svg" alt="play" width={20} height={20} />
         CASH OUT
       </button>
     </div>
