@@ -138,7 +138,7 @@ export default function SlotMachine() {
       <button
         onClick={handleRollClicked}
         disabled={isRollDisabled || !session || session.credits < 1}
-        className="flex gap-4 px-8 py-3 bg-blue-600 text-white text-lg rounded-full hover:bg-blue-700 disabled:bg-blue-400 transition-transform transform active:scale-95 mb-4 animate__animated animate-bounce"
+        className="flex gap-4 px-8 py-3 bg-blue-600 text-white text-lg rounded-full hover:bg-blue-700 disabled:bg-blue-400 transition-transform transform active:scale-95 mb-4 cursor-pointer"
         aria-label="Roll the slots"
       >
         <Image src="/icons/play.svg" alt="play" width={20} height={20} />
@@ -148,7 +148,7 @@ export default function SlotMachine() {
         onClick={cashOut}
         onMouseEnter={handleCashOutHover}
         disabled={isCashOutDisabled || !session}
-        className="flex gap-4 px-8 py-3 bg-red-600 text-white text-lg rounded-full hover:bg-red-700 disabled:bg-red-400 transition-transform transform active:scale-95 mb-4"
+        className="flex gap-4 px-8 py-3 bg-red-600 text-white text-lg rounded-full hover:bg-red-700 disabled:bg-red-400 transition-transform transform active:scale-95 mb-4 cursor-pointer"
         style={{
           transform: `translate(${cashOutPosition.x}px, ${cashOutPosition.y}px)`,
         }}
